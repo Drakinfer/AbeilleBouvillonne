@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello OrderController!
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		{% if statut is empty %}
+			<a href="{{path('order', {'statut' : 'Commandé'})}}" class="btn">Commandes en cours</a>
+			<a href="{{path('order', {'statut' : 'Prête'})}}" class="btn">Commandes prêtes</a>
+			<a href="{{path('order', {'statut' : 'Livrée'})}}" class="btn">Commandes livrés</a>
+			<a href="{{path('order', {'statut' : 'Annulée'})}}" class="btn">Commandes annulées</a>
+		{% else %}
+			{% if statut is same as 'Commandé' %}
+				<a href="{{path('order')}}" class="btn">Toutes les commandes</a>
+				<a href="{{path('order', {'statut' : 'Prête'})}}" class="btn">Commandes prêtes</a>
+				<a href="{{path('order', {'statut' : 'Livrée'})}}" class="btn">Commandes livrés</a>
+				<a href="{{path('order', {'statut' : 'Annulée'})}}" class="btn">Commandes annulées</a>
+			{% else %}
+				{% if statut is same as 'Prête' %}
+					<a href="{{path('order')}}" class="btn">Toutes les commandes</a>
+					<a href="{{path('order', {'statut' : 'Commandé'})}}" class="btn">Commandes en cours</a>
+					<a href="{{path('order', {'statut' : 'Livrée'})}}" class="btn">Commandes livrés</a>
+					<a href="{{path('order', {'statut' : 'Annulée'})}}" class="btn">Commandes annulées</a>
+				{% else %}
+					{% if statut is same as 'Livré' %}
+						<a href="{{path('order')}}" class="btn">Toutes les commandes</a>
+						<a href="{{path('order', {'statut' : 'Commandé'})}}" class="btn">Commandes en cours</a>
+						<a href="{{path('order', {'statut' : 'Prête'})}}" class="btn">Commandes prêtes</a>
+						<a href="{{path('order', {'statut' : 'Annulée'})}}" class="btn">Commandes annulées</a>
+					{% else %}
+						<a href="{{path('order')}}" class="btn">Toutes les commandes</a>
+						<a href="{{path('order', {'statut' : 'Commandé'})}}" class="btn">Commandes en cours</a>
+						<a href="{{path('order', {'statut' : 'Prête'})}}" class="btn">Commandes prêtes</a>
+						<a href="{{path('order', {'statut' : 'Livrée'})}}" class="btn">Commandes livrées</a>
+					{% endif %}
+				{% endif %}
+			{% endif %}
+		{% endif %}
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Date de commande</th>
+					<th scope="col">Total de la commande</th>
+					<th scope="col">Client</th>
+					<th scope="col">Etat</th>
+					<th scope="col">Actions</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for order in orders %}
+					<tr>
+						<td>{{order.orderDate ? order.orderDate|date('Y-m-d')}}</td>
+						<td>{{order.total| number_format(2)}}</td>
+						<td>{{order.user.name}}
+							{{order.user.firstname}}</td>
+						<td>{{order.statut}}</td>
+						<td>
+							<a href="{{path('order_show', {'id':order.id})}}">
+								<i class="fas fa-eye"></i>
+							</a>
+							{% if order.statut is same as 'Commandé'%}
+								<a href="{{path('ready', {'id':order.id})}}">
+									<i class="fas fa-box"></i>
+								</a>
+								<a href="{{path('cancelledadmin', {'id':order.id})}}">
+									<i class="far fa-times-circle"></i>
+								</a>
+							{% endif %}
+							{% if order.statut is same as 'Prête'%}
+								<a href="{{path('delivered', {'id':order.id})}}">
+									<i class="fas fa-box"></i>
+								</a>
+							{% endif %}
+						</td>
+					</tr>
+
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
+{% endblock %}

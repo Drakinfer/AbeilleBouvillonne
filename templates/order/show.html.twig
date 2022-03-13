@@ -1,0 +1,64 @@
+{% extends "base.html.twig" %}
+{% block title %}
+	{{order.id}}
+{% endblock %}
+{% block body %}
+
+	<div class="container">
+		<p>Commande passé par
+			{{order.user.name}}
+			{{order.user.firstname}}</p>
+		<p>du
+			{{order.orderDate ? order.orderDate|date('d-m-Y')}}</p>
+		<p>Etat :
+			{{order.statut}}
+		</p>
+
+		<table class="table">
+			<thead>
+				<tr>
+					<th scope="col">Référence</th>
+					<th scope="col">Produit</th>
+					<th scope="col">Quantité</th>
+					<th scope="col">Prix Unitaire</th>
+					<th scope="col">Prix total</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in products %}
+					<tr>
+						<th scope="row">{{product.reference}}</th>
+						<td>{{product.name}}</td>
+						<td>{{product.quantity}}</td>
+						<td>{{product.unitprice| number_format(2)}}</td>
+						<td>{{product.total| number_format(2)}}</td>
+					</tr>
+				{% endfor %}
+				<tr>
+					<td></td>
+					<td></td>
+					<td></td>
+					<td></td>
+					<th>{{order.total| number_format(2)}}</th>
+				</tr>
+			</tbody>
+		</table>
+
+		<h1>Message</h1>
+		{% for message in message %}
+			<div class="comment mt-4 text-justify float-left">
+				<h4>de
+					{{ message.user.firstname }}</h4>
+				<span>{{ message.date ? message.date|date('Y-m-d H:i:s') : '' }}</span>
+				<br>
+				<p>{{ message.title }}
+				</p>
+				<p>{{ message.message }}</p>
+			</div>
+		{% endfor %}
+
+		<a href="{{path('new_message', {'id':order.id})}}" class="btn">Nouveau Message</a>
+
+		<a href="{{path('order')}}" class="btn btn-outline-primary">Retour aux commandes</a>
+	</div>
+{% endblock %}

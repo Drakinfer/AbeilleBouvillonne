@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Merci pour votre commande - AbeilleBouvillonne
+{% endblock %}
+
+{% block body %}
+
+	<div class="container">
+		<h2>Merci pour votre commande</h2>
+		<p>Vous serez averti par email dès que votre commande sera prête.</p>
+		<p>Si besoin, vous pouvez rajouter un message sur la commande, en allant dans Mon profil > Mes commandes</p>
+		<a href="{{path('home')}}" class="btn">Retourner à l'Accueil</a>
+	</div>
+{% endblock %}

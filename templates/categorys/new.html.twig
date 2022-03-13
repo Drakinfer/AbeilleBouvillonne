@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle Catégorie - Miel Bouvillon
+{% endblock %}
+
+
+{% block body %}
+	<h2>Créer une nouvelle catégorie</h2>
+
+	{{ include('categorys/_form.html.twig') }}
+
+	<a href="{{ path('categorys_index') }}" class="btn">Revenir à la liste</a>
+{% endblock %}

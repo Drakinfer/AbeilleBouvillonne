@@ -1,0 +1,91 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box
+}
+
+.text-uppercase {
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.1rem
+}
+
+.table {
+    overflow: hidden
+}
+
+.table thead tr th {
+    letter-spacing: 0.08rem;
+    font-weight: normal
+}
+
+.table tr td,
+.table tr th {
+    border: none;
+    text-align: center
+}
+
+.table thead {
+    font-size: 0.8rem;
+    font-weight: 700
+}
+
+.table tbody td.item {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+    font-weight: 900;
+    text-align: left
+}
+
+.table tbody td.item img {
+    width: 30px;
+    height: 30px;
+    object-fit: contain
+}
+
+.table thead th.header {
+    text-align: left
+}
+
+.table tbody tr {
+    padding-top: 10px;
+    padding: 10px 20px;
+    border-bottom: 1px solid #ccc;
+    transition: all .4s ease-in-out
+}
+
+.table tbody tr:last-child {
+    border: none
+}
+
+.table tbody tr:hover {
+    transform: scale(1.004);
+    box-shadow: 2px 2px 10px #a5a5a5;
+    cursor: pointer;
+    overflow: hidden;
+    scroll-behavior: unset
+}
+
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+@media screen and (max-width:426px) {
+    img{
+        display: none;
+    }
+}
+
+@media screen and (max-width:375px) {
+    .table thead tr th:nth-child(3){
+        display: none;
+    }
+
+    .table tbody tr td:nth-child(3){
+        display: none;
+    }
+}
+

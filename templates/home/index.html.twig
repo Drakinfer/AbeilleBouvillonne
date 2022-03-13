@@ -1,0 +1,103 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - Abeille Bouvillonne
+{% endblock %}
+
+{% block bootstrap %}{% endblock %}
+
+{% block uniqueCSS %}
+	<link rel="stylesheet" href=" {{asset('assets/css/index.css')}}">
+{% endblock %}
+
+{% block body %}
+	<section class="centre">
+		<section class="container">
+			{% for event in events %}
+				<a href="{{path('event_detail', {'id':event.id})}}">
+					{% if loop.index is same as 1 %}
+						<section class="slider active">
+						{% else %}
+							<section class="slider">
+							{% endif %}
+							<img src="{{ asset('images/' ~ event.image) }}" class="d-block w-100" alt="{{event.name}}">
+							<article class="carousel-caption">
+								<p class="titre">{{event.name}}</p>
+								<p>{{event.description|slice(0,100)}}</p>
+								<p>Cliquer pour en savoir plus sur l'événement</p>
+							</article>
+						</section>
+					</a>
+				{% endfor %}
+
+				<section class="cont-btn">
+					<div class="btn-nav left">←</div>
+					<div class="btn-nav right">→</div>
+				</section>
+			</section>
+			<a href="{{path('eventslist')}}" class="btn btn-event">Voir tous nos évènements</a>
+		</section>
+		<h2 class="centre titre">Nos produits</h2>
+		<section id="category">
+			{% for category in categorys %}
+				<a href="{{path('nav_filtre',{'cat':category.name})}}" class="btn category-btn">{{category.name}}
+				</a>
+			{% endfor %}
+		</section>
+		<section class="centre">
+			<h3 class="centre titre">Nos produit en stock</h3>
+			<section class="produits">
+				{% for product in productsStock %}
+					<section class="shop-card">
+						<p class="title">
+							{{product.name}}
+						</p>
+						<p class="desc">
+							{{product.description|slice(0,50)}}
+						</p>
+						<figure>
+							<img class="img-produit" src="{{ asset('images/' ~ product.image) }}"/>
+						</figure>
+						<article class="cta">
+							<form action="{{path('index_add_produit_panier', {'id': product.id})}}">
+								<p class="price">{{product.prix}}€</p>
+								<input type="number" class="quantity" name="quantity" min="1">
+								<input type="submit" value="Ajouter au panier" class="btn submit">
+							</form>
+						</article>
+					</section>
+				{% endfor %}
+			</section>
+			<a href="{{path('onStockAll')}}" class="btn btn-centre">Voir tous nos produits disponibles</a>
+			<h3 class="centre titre">Nos produit sur commande</h3>
+
+
+			<section class="produits">
+
+				{% for product in productsOnOrder %}
+					<section class="shop-card">
+						<p class="title">
+							{{product.name}}
+						</p>
+						<p class="desc">
+							{{product.description|slice(0,50)}}
+						</p>
+						<figure>
+							<img class="img-produit" src="{{ asset('images/' ~ product.image) }}"/>
+						</figure>
+						<article class="cta">
+							<form action="{{path('index_add_produit_panier', {'id': product.id})}}">
+								<p class="price">{{product.prix}}€</p>
+								<input type="number" class="quantity" name="quantity">
+								<input type="submit" value="Ajouter au panier" class="btn submit">
+							</form>
+						</article>
+					</section>
+				{% endfor %}
+			</section>
+			<a href="{{path('onOrderAll')}}" class="btn btn-centre">Voir tous nos produits sur commande</a>
+		</section>
+	{% endblock %}
+
+	{% block uniqueJS %}
+		<script src="{{asset('assets/js/caroussel.js')}}"></script>
+	{% endblock %}

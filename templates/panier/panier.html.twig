@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Votre panier - Abeille Bouvillonne
+{% endblock %}
+
+{% block uniqueCSS %}
+	<link rel="stylesheet" href="{{asset('assets/css/panier.css')}}">
+{% endblock %}
+
+{% block body %}
+	<section class="centre">
+		<form action="{{ path('validOrder')}}">
+			<table class="table">
+				<thead>
+
+					<tr>
+						<th scope="col" class="text-uppercase header">Produits</th>
+						<th scope="col" class="text-uppercase">Quantité</th>
+						<th scope="col" class="text-uppercase">Prix</th>
+						<th scope="col" class="text-uppercase">Total</th>
+						<th scope="col" class="text-uppercase">Enlever le produit</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for item in items %}
+						<tr>
+							<td class="item">
+								<div class="d-flex">
+									<img src="{{asset('images/' ~ item.product.image)}}" alt="{{ item.product.name }}">
+									<div class="pl-2">
+										{{ item.product.name }}
+									</div>
+								</div>
+							</td>
+
+							<td>
+								<a href="{{ path('add_1', {'id': item.product.id}) }}">
+									<i class="fas fa-plus-circle"></i>
+								</a>
+								{{ item.quantity}}<a href="{{ path('moins_1', {'id': item.product.id})}}">
+									<i class="fas fa-minus-circle"></i>
+								</a>
+
+							</td>
+							<td scope="row">{{ item.product.prix|format_currency('EUR')}}</td>
+							<td class="font-weight-bold">{{item.total|format_currency('EUR')}}
+							</td>
+							<td scope="row">
+								<a href="{{ path('delete_product_panier', {'id': item.product.id})}}">
+									<i class="fas fa-trash-alt"></i>
+								</a>
+							</td>
+						</tr>
+					{% endfor %}
+					<tr style="text-align: left">
+						<th scope="col" colspan="4">{{montant|format_currency('EUR')}}</th>
+					</tr>
+
+				</tbody>
+			</table>
+			<section class="flex-column">
+				<p>Date de livraison souhaitée :
+					<input type="date" name="wishedDate"></p>
+				<p>Votre Message :</p>
+				<textarea name="message" cols="10" rows="10"></textarea>
+
+				{% if not app.user %}
+					<a href="{{path('app_login')}}" class="btn btn-centre">Connectez-vous pour passer commande</a>
+
+				{% endif %}
+				<article>
+					<input class="btn btn-centre" type="submit" value="Confirmer la commande" {% if count is same as 0 %} disabled {% endif %}>
+				</article>
+			</section>
+		</form>
+	</section>
+	<section class="centre">
+		<a href="{{ path('delete_panier')}}" class="btn btn-centre">Supprimer le panier</a>
+	</section>
+
+
+{% endblock %}

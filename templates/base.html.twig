@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>
+			{% block title %}MielBouvillon : Vente de produits provenant des abeilles
+			{% endblock %}
+		</title>
+		<meta name="description" content={% block description %} "Découvrez nos produits provenant des abeilles (miels, cire, propolis,...) fait par notre productrice locale" {% endblock %}>
+		<meta charset="UTF-8">
+		<meta name="author" content="Alexis CHAUVEAU Février 2022">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" type="image/jpg" href="{{asset('images/' ~ societe.favicon)}}"/>
+
+		{% block stylesheets %}
+
+			{% block bootstrap %}<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+			{% endblock %}
+			<link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
+			{% block uniqueCSS %}{% endblock %}
+		{% endblock %}
+		{% block style %}
+			<style>
+				.banderolle {
+					background-image: url({{ asset('images/'~ societe.banniere)}});
+				}
+			</style>
+		{% endblock %}
+	</head>
+	<body>
+		{% block navbar %}
+			<header class="entete">
+				<header id="header">
+					<a href="{{ path('home') }}"><img src="{{ asset('images/'~ societe.logo) }}" alt="{{societe.nom}}"></a>
+					<form action="{{path('recherche')}}" method="post">
+						<input type="search" placeholder="Rechercher un produit..." name="recherche">
+					</form>
+					<ul>
+						<li>
+							<a href="{{ path('panier') }}">Mon Panier
+								<i class="fas fa-shopping-bag"></i>
+							</a>
+						</li>
+						<li>
+							<a href="{{ path('contact') }}">Nous contacter
+							</a>
+						</li>
+						{% if app.user %}
+							<li>
+								<a href="{{ path('profil') }}">Mon compte
+									<i class="fas fa-user"></i>
+								</a>
+							</li>
+							<li>
+								<a href="{{ path('app_logout') }}">Deconnexion</a>
+							</li>
+						{% else %}
+							<li>
+								<a href="{{ path('app_register') }}">S'inscrire</a>
+							</li>
+							<li>
+								<a href="{{path('app_login')}}">Se connecter</a>
+							</li>
+						{% endif %}
+					</ul>
+				</header>
+
+				<nav class="hnav" role="navigation">
+					<ul class="nav-links user-nav">
+						{% for category in categorys %}
+							<li>
+								<a href="{{path('nav_filtre',{'cat':category.name})}}">{{category.name}}
+								</a>
+							</li>
+						{% endfor %}
+					</ul>
+					<article class="burger user-burger">
+						<span></span>
+					</article>
+				</nav>
+				{% if is_granted("ROLE_ADMIN") %}
+					<nav class="hnav" role="navigation">
+						<ul class="nav-links admin-nav">
+							<li>
+								<a href="{{path('products_index')}}">Produits</a>
+							</li>
+							<li>
+								<a href="{{path('categorys_index')}}">Catégories</a>
+							</li>
+							<li>
+								<a href="{{path('order')}}">Commandes</a>
+							</li>
+							<li>
+								<a href="{{path('events_index')}}">Evènements</a>
+							</li>
+							<li>
+								<a href="{{path('users_index')}}">Utilisateurs</a>
+							</li>
+							<li>
+								<a href="{{path('societe_edit', {'id': societe.id})}}">Société</a>
+							</li>
+						</ul>
+						<article class="burger admin-burger">
+							<span></span>
+						</article>
+					</nav>
+				{% endif %}
+				{% if is_granted("ROLE_MODO") %}
+					<nav>
+						<ul class="nav-links admin-nav">
+							<li>
+								<a href="{{path('products_index')}}">Mes produits</a>
+							</li>
+							<li>
+								<a href="{{path('categorys_index')}}">Mes catégories</a>
+							</li>
+							<li>
+								<a href="{{path('order')}}">Mes commandes</a>
+							</li>
+							<li>
+								<a href="{{path('events_index')}}">Mes évènements</a>
+							</li>
+							<li>
+								<a href="{{path('users_index')}}">Les utilisateurs</a>
+							</li>
+						</ul>
+						<article class="burger admin-burger">
+							<span></span>
+						</article>
+					</nav>
+				{% endif %}
+			</header>
+		{% endblock %}
+		{% block image %}
+			<section class="banderolle"></section>
+		{% endblock %}
+		<main>
+			<h1>Miel Bouvillon</h1>
+
+			{% block body %}{% endblock %}
+		</main>
+		<footer class="footer">
+			{% block footer %}
+				<ul class="r-footer">
+					<li class="features">
+						<h2 class="h2-footer">Produits</h2>
+						<ul class="box h-box">
+
+							{% for category in categorys %}
+								<li>
+									<a href="{{path('nav_filtre',{'cat':category.name})}}">{{category.name}}
+									</a>
+								</li>
+							{% endfor %}
+						</ul>
+					</li>
+					<li class="features">
+						<h2 class="h2-footer">Navigation</h2>
+						<ul>
+							<li>
+								<a href="{{ path('home') }}">Accueil</a>
+							</li>
+							<li>
+								<a href="{{ path('contact') }}">Nous contacter
+								</a>
+							</li>
+							<li>
+								<a href="{{ path('panier') }}">Mon Panier
+									<i class="fas fa-shopping-bag"></i>
+								</a>
+							</li>
+							{% if app.user %}
+								<li>
+									<a href="{{ path('profil') }}">Mon compte
+										<i class="fas fa-user"></i>
+									</a>
+								</li>
+								<li>
+									<a href="{{ path('app_logout') }}">Deconnexion</a>
+								</li>
+							{% else %}
+								<li>
+									<a href="{{ path('app_register') }}">S'inscrire</a>
+								</li>
+								<li>
+									<a href="{{path('app_login')}}">Se connecter</a>
+								</li>
+							{% endif %}
+						</ul>
+					</li>
+					<li>
+						<h2 class="h2-footer">Adresse</h2>
+						<ul class="box">
+							<li>
+								<p>{{societe.nom}}</p>
+							</li>
+							<li>
+								<p>{{societe.adresse}}</p>
+							</li>
+							<li>
+								<p>{{societe.codepostal}}
+									{{societe.ville}}</p>
+							</li>
+							<li>
+								<p>{{societe.pays}}</p>
+							</li>
+						</ul>
+					</li>
+				</ul>
+				<div class="b-footer">
+					<p>
+						Tous droits réservés par Abeille Bouvillonne 2022 -
+						<a href="">Mentions Légales</a>
+					</p>
+				</div>
+			{% endblock %}
+		</footer>
+		{% block javascripts %}
+			<script src="{{asset('assets/js/navbar.js')}}"></script>
+			<script src="https://kit.fontawesome.com/c97f9a41f7.js" crossorigin="anonymous"></script>
+			{% block uniqueJS %}{% endblock %}
+
+		{% endblock %}
+	</body>
+</html>
