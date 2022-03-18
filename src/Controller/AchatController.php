@@ -29,7 +29,6 @@ class AchatController extends AbstractController
         $commande->setWishedDelivery($wishedDate);
         $commande->setMessage($message);
 
-        $commande = $orderManager->getOrder($panier);
         $manager->persist($commande);
         $tab_panier = $panier->getDetailPanier();
 
@@ -48,8 +47,6 @@ class AchatController extends AbstractController
         $manager->flush();
 
         $panier->deletePanier();
-        $id = $commande->getId();
-        $order = $ordersRepository->find($id);
 
         $mail = (new Email())
             ->from('abeillebouvillonne@gmail.com')
@@ -64,8 +61,6 @@ class AchatController extends AbstractController
         $mailer->send($mail);
 
         return $this->render('achat/order.html.twig', [
-            'order' => $order,
-            'detail' => $order->getOrderDetails(),
             'categorys' => $categorysRepository->findAll(),
             'societe' => $societeRepository->find(1),
         ]);

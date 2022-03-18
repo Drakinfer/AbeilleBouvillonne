@@ -6,11 +6,13 @@ use DateTime;
 use App\Form\MdpType;
 use App\Entity\Orders;
 use App\Entity\Contact;
+use App\Entity\Products;
 use App\Form\ProfilType;
 use App\Form\MessageType;
 use Symfony\Component\Mime\Email;
 use App\Repository\OrdersRepository;
 use App\Repository\CategorysRepository;
+use App\Repository\ProductsRepository;
 use App\Repository\SocieteRepository;
 
 use function PHPUnit\Framework\isEmpty;
@@ -186,9 +188,16 @@ class ProfilController extends AbstractController
     }
 
     #[Route('/order/{id}/cancelled', name: 'cancelled')]
-    public function cancelled(Orders $order, EntityManagerInterface $manager, MailerInterface $mailer, SocieteRepository $societeRepository)
+    public function cancelled(Orders $order, EntityManagerInterface $manager, MailerInterface $mailer, SocieteRepository $societeRepository, ProductsRepository $productsRepository)
     {
         $order->setStatut('Annulée');
+        $products = $order->getOrderDetails();
+        foreach($products as $product){
+            $name = $product->getName();
+            $qty = $product->getQuantity();
+            $item= $productsRepository->findOneBy($name);
+            $item->setStock($qty);
+        }
         $manager->flush();
         $user = $this->getUser();
         $nom = $user->getName();

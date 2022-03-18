@@ -43,8 +43,12 @@
 				</tr>
 			</tbody>
 		</table>
-
+	<pre>
+		{{ dump(order) }}
+	</pre>
 		<h1>Message</h1>
+		<p>Message de la commande</p>
+		<p>{{order.message}}</p>
 		{% for message in message %}
 			<div class="comment mt-4 text-justify float-left">
 				<h4>de
