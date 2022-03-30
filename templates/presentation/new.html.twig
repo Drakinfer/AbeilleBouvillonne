@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouveau Paragraphe - Abeille Bouvilllonne
+{% endblock %}
+
+{% block body %}
+	<h2>Ajouter un paragraphe de présentation - Abeille Bouvillonne</h2>
+
+	{{ include('presentation/_form.html.twig') }}
+
+	<a href="{{ path('app_presentation_index') }}">back to list</a>
+{% endblock %}

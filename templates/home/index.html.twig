@@ -60,9 +60,12 @@
 						<article class="cta">
 							<form action="{{path('index_add_produit_panier', {'id': product.id})}}">
 								<p class="price">{{product.prix}}€</p>
-								<input type="number" class="quantity" name="quantity" min="1">
+								<p class="price">En stock :
+									{{product.stock}}</p>
+								<input type="number" class="quantity" name="quantity" min="1" max="{{product.stock}}">
 								<input type="submit" value="Ajouter au panier" class="btn submit">
 							</form>
+							<a href="{{path('product_detail_show', {'id':product.id})}}" class="btn">Plus d'infos</a>
 						</article>
 					</section>
 				{% endfor %}
@@ -87,10 +90,11 @@
 						<article class="cta">
 							<form action="{{path('index_add_produit_panier', {'id': product.id})}}">
 								<p class="price">{{product.prix}}€</p>
-								<input type="number" class="quantity" name="quantity">
+								<input type="number" class="quantity" name="quantity" min="1" max="{{product.stock}}">
 								<input type="submit" value="Ajouter au panier" class="btn submit">
 							</form>
 						</article>
+						<a href="{{path('product_detail_show', {'id':product.id})}}" class="btn">Plus d'infos</a>
 					</section>
 				{% endfor %}
 			</section>

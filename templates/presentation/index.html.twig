@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Présentation - Liste des paragraphes - Abeille Bouvillonne
+{% endblock %}
+
+{% block body %}
+	<h2>Liste des paragraphes</h2>
+
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Title</th>
+				<th>Description</th>
+				<th>actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for presentation in presentations %}
+				<tr>
+					<td>{{ presentation.title }}</td>
+					<td>{{ presentation.description }}</td>
+					<td>
+						<a href="{{ path('app_presentation_show', {'id': presentation.id}) }}">show</a>
+						<a href="{{ path('app_presentation_edit', {'id': presentation.id}) }}">edit</a>
+					</td>
+				</tr>
+			{% else %}
+				<tr>
+					<td colspan="4">Pas d'enregistrement trouvés</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<a href="{{ path('app_presentation_new') }}" class="btn">Créer un nouveau paragraphe</a>
+{% endblock %}

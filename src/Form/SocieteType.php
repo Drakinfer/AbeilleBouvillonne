@@ -52,6 +52,26 @@ class SocieteType extends AbstractType
                     'required' => false,
                     'empty_data' => ''
                 ]
+            )
+            ->add(
+                'imageGauche',
+                FileType::class,
+                [
+                    'label' => 'Charger la banderolle de gauche',
+                    'data_class' => null,
+                    'required' => false,
+                    'empty_data' => ''
+                ]
+            )
+            ->add(
+                'imageDroite',
+                FileType::class,
+                [
+                    'label' => 'Charger la banderolle de droite',
+                    'data_class' => null,
+                    'required' => false,
+                    'empty_data' => ''
+                ]
             );;
     }
 

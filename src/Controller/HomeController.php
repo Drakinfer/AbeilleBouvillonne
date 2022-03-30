@@ -7,6 +7,7 @@ use App\Entity\Products;
 use App\Repository\ProductsRepository;
 use App\Repository\CategorysRepository;
 use App\Repository\EventsRepository;
+use App\Repository\PresentationRepository;
 use App\Repository\SocieteRepository;
 use DateTime;
 use PhpParser\Node\Expr\New_;
@@ -127,6 +128,15 @@ class HomeController extends AbstractController
     {
         return $this->render('home/event_show.html.twig', [
             'event' => $event,
+            'categorys' => $categorysRepository->findAll(),
+            'societe' => $societeRepository->find(1),
+        ]);
+    }
+
+    #[Route('/qui-sommes-nous?}', name: 'presentation', methods: ['GET'])]
+    public function presentation(CategorysRepository $categorysRepository, SocieteRepository $societeRepository): Response
+    {
+        return $this->render('home/presentation.html.twig', [
             'categorys' => $categorysRepository->findAll(),
             'societe' => $societeRepository->find(1),
         ]);

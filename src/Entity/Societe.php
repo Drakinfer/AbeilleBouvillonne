@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\SocieteRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -68,7 +70,7 @@ class Societe
     private $portable;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $logo;
 
@@ -81,6 +83,26 @@ class Societe
      * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $favicon;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageGauche;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageDroite;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Presentation::class, mappedBy="societe", orphanRemoval=true)
+     */
+    private $presentations;
+
+    public function __construct()
+    {
+        $this->presentations = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -212,7 +234,7 @@ class Societe
         return $this->logo;
     }
 
-    public function setLogo(string $logo): self
+    public function setLogo(?string $logo): self
     {
         $this->logo = $logo;
 
@@ -239,6 +261,60 @@ class Societe
     public function setFavicon(?string $favicon): self
     {
         $this->favicon = $favicon;
+
+        return $this;
+    }
+
+    public function getImageGauche(): ?string
+    {
+        return $this->imageGauche;
+    }
+
+    public function setImageGauche(?string $imageGauche): self
+    {
+        $this->imageGauche = $imageGauche;
+
+        return $this;
+    }
+
+    public function getImageDroite(): ?string
+    {
+        return $this->imageDroite;
+    }
+
+    public function setImageDroite(?string $imageDroite): self
+    {
+        $this->imageDroite = $imageDroite;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Presentation>
+     */
+    public function getPresentations(): Collection
+    {
+        return $this->presentations;
+    }
+
+    public function addPresentation(Presentation $presentation): self
+    {
+        if (!$this->presentations->contains($presentation)) {
+            $this->presentations[] = $presentation;
+            $presentation->setSociete($this);
+        }
+
+        return $this;
+    }
+
+    public function removePresentation(Presentation $presentation): self
+    {
+        if ($this->presentations->removeElement($presentation)) {
+            // set the owning side to null (unless already changed)
+            if ($presentation->getSociete() === $this) {
+                $presentation->setSociete(null);
+            }
+        }
 
         return $this;
     }

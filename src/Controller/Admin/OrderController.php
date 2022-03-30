@@ -6,6 +6,7 @@ use App\Entity\Orders;
 use Symfony\Component\Mime\Email;
 use App\Repository\OrdersRepository;
 use App\Repository\CategorysRepository;
+use App\Repository\ProductsRepository;
 use App\Repository\SocieteRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -94,9 +95,16 @@ class OrderController extends AbstractController
     }
 
     #[Route('/order/{id}/cancelledadmin', name: 'cancelledadmin')]
-    public function cancelled(Orders $order, EntityManagerInterface $manager, MailerInterface $mailer)
+    public function cancelled(Orders $order, EntityManagerInterface $manager, MailerInterface $mailer, ProductsRepository $productsRepository)
     {
         $order->setStatut('Annulée');
+        $products = $order->getOrderDetails();
+        foreach ($products as $product) {
+            $name = $product->getName();
+            $qty = $product->getQuantity();
+            $item = $productsRepository->findbyName($name);
+            $item[0]->setStock($qty);
+        }
         $manager->flush();
         $id = $order->getId();
         $email = $order->getUser()->getEmail();

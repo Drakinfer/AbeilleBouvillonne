@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la présentation - Abeille Bouvillonne
+{% endblock %}
+
+{% block body %}
+	<h2>Modification du paragraphe de présentation</h2>
+	{{ include('presentation/_form.html.twig', {'button_label': 'Modifier'}) }}
+
+	<a href="{{ path('app_presentation_index') }}" class="btn">Revenir à la liste</a>
+	<a href="{{ path('home') }}" class="btn">Revenir à l'Accueil</a>
+	{{ include('presentation/_delete_form.html.twig') }}
+{% endblock %}

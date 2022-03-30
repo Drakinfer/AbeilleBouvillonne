@@ -10,12 +10,9 @@
 {% endblock %}
 
 {% block body %}
-	<pre>
-    {{ dump(products) }}
-</pre>
 	<section class="centre">
-		<h3 class="centre titre">Votre recherche :
-			{{name}}</h3>
+		<h2 class="centre titre">Votre recherche :
+			{{name}}</h2>
 		<section class="produits">
 			{% for product in products %}
 				<section class="shop-card">
@@ -35,6 +32,7 @@
 							<input type="submit" value="Ajouter au panier" class="btn submit">
 						</form>
 					</article>
+					<a href="{{path('product_detail_show', {'id':product.id})}}" class="btn">Plus d'infos</a>
 				</section>
 			{% endfor %}
 		</section>

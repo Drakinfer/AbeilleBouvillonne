@@ -192,11 +192,11 @@ class ProfilController extends AbstractController
     {
         $order->setStatut('Annulée');
         $products = $order->getOrderDetails();
-        foreach($products as $product){
+        foreach ($products as $product) {
             $name = $product->getName();
             $qty = $product->getQuantity();
-            $item= $productsRepository->findOneBy($name);
-            $item->setStock($qty);
+            $item = $productsRepository->findbyName($name);
+            $item[0]->setStock($qty);
         }
         $manager->flush();
         $user = $this->getUser();

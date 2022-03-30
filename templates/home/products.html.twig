@@ -29,6 +29,7 @@
 						<input type="number" class="quantity" name="quantity">
 						<input type="submit" value="Ajouter au panier" class="btn submit">
 					</form>
+					<a href="{{path('product_detail_show', {'id':product.id})}}" class="btn">Plus d'infos</a>
 				</article>
 			</section>
 		{% endfor %}

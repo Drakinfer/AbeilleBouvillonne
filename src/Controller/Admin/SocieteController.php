@@ -28,6 +28,12 @@ class SocieteController extends AbstractController
         $old_name_favicon = $societe->getFavicon();
         $path4 = $this->getParameter('upload_dir') . $old_name_banniere;
 
+        $old_name_imageGauche = $societe->getImageGauche();
+        $path5 = $this->getParameter('upload_dir') . $old_name_imageGauche;
+
+        $old_name_imageDroite = $societe->getImageDroite();
+        $path6 = $this->getParameter('upload_dir') . $old_name_imageDroite;
+
         $form = $this->createForm(SocieteType::class, $societe);
         $form->handleRequest($request);
 
@@ -70,10 +76,34 @@ class SocieteController extends AbstractController
                 $societe->setFavicon($old_name_favicon);
             }
 
+            $imageGauche = $form->get('image-gauche')->getData();
+            if ($favicon) {
+                if (file_exists($path5)) {
+                    unlink($path5);
+                }
+                $imageGauche_new_name = uniqid() . '.' . $imageGauche->guessExtension();
+                $imageGauche->move($this->getParameter('upload_dir'), $imageGauche_new_name);
+                $societe->setImageGauche($imageGauche_new_name);
+            } else {
+                $societe->setImageGauche($old_name_imageGauche);
+            }
+
+            $imageDroite = $form->get('image-droite')->getData();
+            if ($imageDroite) {
+                if (file_exists($path6)) {
+                    unlink($path6);
+                }
+                $imageDroite_new_name = uniqid() . '.' . $imageDroite->guessExtension();
+                $imageDroite->move($this->getParameter('upload_dir'), $imageDroite_new_name);
+                $societe->setImageDroite($imageDroite_new_name);
+            } else {
+                $societe->setImageDroite($old_name_imageDroite);
+            }
+
 
             $entityManager->flush();
 
-            return $this->redirectToRoute('sopciete_edit', ['id' => 1], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('societe_edit', ['id' => 1], Response::HTTP_SEE_OTHER);
         }
 
         return $this->renderForm('societe/edit.html.twig', [
