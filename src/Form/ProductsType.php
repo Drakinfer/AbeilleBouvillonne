@@ -6,14 +6,23 @@ use App\Entity\Products;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
 class ProductsType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('name')
+            ->add(
+                'name',
+                TextType::class,
+                [
+                    'label' => 'Nom',
+                ]
+            )
             ->add('reference')
             ->add('description')
             ->add('prix')
@@ -31,11 +40,35 @@ class ProductsType extends AbstractType
             ->add('poids')
             ->add('origine')
             ->add('mise_en_pot')
-            ->add('color')
+            ->add(
+                'color',
+                TextType::class,
+                [
+                    'label' => 'Couleur',
+                ]
+            )
             ->add('taille')
-            ->add('dlc')
-            ->add('onOrder')
-            ->add('category');
+            ->add(
+                'dlc',
+                DateType::class,
+                [
+                    'label' => 'DLC',
+                ]
+            )
+            ->add(
+                'onOrder',
+                CheckboxType::class,
+                [
+                    'label' => 'Sur commande',
+                ]
+            )
+            ->add(
+                'category',
+                TextType::class,
+                [
+                    'label' => 'Catégorie de Produit',
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

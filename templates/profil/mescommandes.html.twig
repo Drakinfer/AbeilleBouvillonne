@@ -22,7 +22,7 @@
 				<a href="{{path('myorders', {'statut' : 'Livrée'})}}" class="btn">Commandes livrés</a>
 				<a href="{{path('myorders', {'statut' : 'Annulée'})}}" class="btn">Commandes annulées</a>
 			{% else %}
-				{% if statut is same as 'Livré' %}
+				{% if statut is same as 'Livrée' %}
 					<a href="{{path('myorders')}}" class="btn">Toutes les commandes</a>
 					<a href="{{path('myorders', {'statut' : 'Commandé'})}}" class="btn">Commandes en cours</a>
 					<a href="{{path('myorders', {'statut' : 'Prête'})}}" class="btn">Commandes prêtes</a>
@@ -40,6 +40,7 @@
 		<table class="table">
 			<thead>
 				<tr>
+					<th scope="col">Numéro de commande</th>
 					<th scope="col">Date de commande</th>
 					<th scope="col">Total de la commande</th>
 					<th scope="col">Client</th>
@@ -50,6 +51,7 @@
 			<tbody>
 				{% for order in orders %}
 					<tr>
+						<td>{{order.id}}</td>
 						<td>{{order.orderDate ? order.orderDate|date('Y-m-d')}}</td>
 						<td>{{order.total| number_format(2)}}</td>
 						<td>{{order.user.name}}

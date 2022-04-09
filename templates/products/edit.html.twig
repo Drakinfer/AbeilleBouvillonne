@@ -1,13 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Products{% endblock %}
+{% block title %}Modifier le Produit - Abeille Bouvillonne
+{% endblock %}
 
 {% block body %}
-    <h1>Edit Products</h1>
+	<h1>Edit Products</h1>
 
-    {{ include('products/_form.html.twig', {'button_label': 'Update'}) }}
+	{{ include('products/_form.html.twig', {'button_label': 'Modifier'}) }}
 
-    <a href="{{ path('products_index') }}">back to list</a>
+	<a href="{{ path('products_index') }}" class="btn">Revenir à la liste</a>
 
-    {{ include('products/_delete_form.html.twig') }}
+	{{ include('products/_delete_form.html.twig') }}
 {% endblock %}

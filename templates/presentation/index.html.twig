@@ -11,6 +11,7 @@
 			<tr>
 				<th>Title</th>
 				<th>Description</th>
+				<th>Position</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -19,6 +20,7 @@
 				<tr>
 					<td>{{ presentation.title }}</td>
 					<td>{{ presentation.description }}</td>
+					<td>{{ presentation.position }}</td>
 					<td>
 						<a href="{{ path('app_presentation_show', {'id': presentation.id}) }}">show</a>
 						<a href="{{ path('app_presentation_edit', {'id': presentation.id}) }}">edit</a>

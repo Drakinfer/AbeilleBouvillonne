@@ -14,14 +14,13 @@
 				<th>Description</th>
 				<th>Prix</th>
 				<th>Stock</th>
-				<th>Image</th>
 				<th>Poids</th>
 				<th>Origine</th>
-				<th>Mise_en_pot</th>
-				<th>Color</th>
+				<th>Mise en pot</th>
+				<th>Couleur</th>
 				<th>Taille</th>
 				<th>Dlc</th>
-				<th>OnOrder</th>
+				<th>S/C</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -33,7 +32,6 @@
 					<td>{{ product.description }}</td>
 					<td>{{ product.prix }}</td>
 					<td>{{ product.stock }}</td>
-					<td><img src="{{asset('images/' ~ product.image) }}" alt="{{ product.name }}"></td>
 					<td>{{ product.poids }}</td>
 					<td>{{ product.origine }}</td>
 					<td>{{ product.miseEnPot ? product.miseEnPot|date('Y-m-d') : '' }}</td>
@@ -42,8 +40,12 @@
 					<td>{{ product.dlc ? product.dlc|date('Y-m-d') : '' }}</td>
 					<td>{{ product.onOrder ? 'Yes' : 'No' }}</td>
 					<td>
-						<a href="{{ path('products_show', {'id': product.id}) }}">show</a>
-						<a href="{{ path('products_edit', {'id': product.id}) }}">edit</a>
+						<a href="{{ path('products_show', {'id': product.id}) }}">
+							<i class="fas fa-eye"></i>
+						</a>
+						<a href="{{ path('products_edit', {'id': product.id}) }}">
+							<i class="fas fa-edit"></i>
+						</a>
 					</td>
 				</tr>
 			{% else %}
@@ -54,5 +56,5 @@
 		</tbody>
 	</table>
 
-	<a href="{{ path('products_new') }}">Create new</a>
+	<a href="{{ path('products_new') }}" class="btn">Créer nouveau</a>
 {% endblock %}

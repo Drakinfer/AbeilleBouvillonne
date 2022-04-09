@@ -134,11 +134,12 @@ class HomeController extends AbstractController
     }
 
     #[Route('/qui-sommes-nous?}', name: 'presentation', methods: ['GET'])]
-    public function presentation(CategorysRepository $categorysRepository, SocieteRepository $societeRepository): Response
+    public function presentation(CategorysRepository $categorysRepository, SocieteRepository $societeRepository, PresentationRepository $presentationRepository): Response
     {
         return $this->render('home/presentation.html.twig', [
             'categorys' => $categorysRepository->findAll(),
             'societe' => $societeRepository->find(1),
+            'presentation' => $presentationRepository->findAllTriPosition(),
         ]);
     }
 }

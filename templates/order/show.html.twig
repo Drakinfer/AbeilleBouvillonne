@@ -1,6 +1,7 @@
 {% extends "base.html.twig" %}
 {% block title %}
 	{{order.id}}
+	- Abeille Bouvillonne
 {% endblock %}
 {% block body %}
 
@@ -43,10 +44,7 @@
 				</tr>
 			</tbody>
 		</table>
-	<pre>
-		{{ dump(order) }}
-	</pre>
-		<h1>Message</h1>
+		<h2>Messages</h2>
 		<p>Message de la commande</p>
 		<p>{{order.message}}</p>
 		{% for message in message %}
@@ -63,6 +61,6 @@
 
 		<a href="{{path('new_message', {'id':order.id})}}" class="btn">Nouveau Message</a>
 
-		<a href="{{path('order')}}" class="btn btn-outline-primary">Retour aux commandes</a>
+		<a href="{{path('order')}}" class="btn">Retour aux commandes</a>
 	</div>
 {% endblock %}

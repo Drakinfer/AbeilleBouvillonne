@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categorys index
+{% block title %}Liste des Catégories - Abeille Bouvillonne
 {% endblock %}
 
 {% block body %}
@@ -18,17 +18,18 @@
 				<tr>
 					<td>{{ category.name }}</td>
 					<td>
-						<a href="{{ path('categorys_show', {'id': category.id}) }}">show</a>
-						<a href="{{ path('categorys_edit', {'id': category.id}) }}">edit</a>
+						<a href="{{ path('categorys_edit', {'id': category.id}) }}">
+							<i class="fas fa-edit"></i>
+						</a>
 					</td>
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="3">no records found</td>
+					<td colspan="3">Pas d'enregistrements</td>
 				</tr>
 			{% endfor %}
 		</tbody>
 	</table>
 
-	<a href="{{ path('categorys_new') }}">Create new</a>
+	<a href="{{ path('categorys_new') }}" class="btn">Créer nouveau</a>
 {% endblock %}

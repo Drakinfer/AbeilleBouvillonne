@@ -1,11 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Products{% endblock %}
+{% block title %}New Products
+{% endblock %}
 
 {% block body %}
-    <h1>Create new Products</h1>
+	<h1>Create new Products</h1>
 
-    {{ include('products/_form.html.twig') }}
+	{{ include('products/_form.html.twig') }}
 
-    <a href="{{ path('products_index') }}">back to list</a>
+	<a href="{{ path('products_index') }}" class="btn">Revenir à la liste</a>
 {% endblock %}

@@ -8,6 +8,8 @@
 	<section class="container">
 		<h2 class="centre">Modifier les informations de l'entreprise</h2>
 
-		{{ include('societe/_form.html.twig', {'button_label': 'Modifier'}) }}
+		{{ include('societe/_form.html.twig', {'button_label': 'Valider la modification'}) }}
+
+		<a href="{{path('app_presentation_index')}}" class="btn">Modifier les paragraphes de présentation</a>
 	</section>
 {% endblock %}

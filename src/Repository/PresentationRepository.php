@@ -45,22 +45,16 @@ class PresentationRepository extends ServiceEntityRepository
         }
     }
 
-    // /**
-    //  * @return Presentation[] Returns an array of Presentation objects
-    //  */
-    /*
-    public function findByExampleField($value)
+    /**
+     * @return Presentation[] Returns an array of Presentation objects
+     */
+    public function findAllTriPosition()
     {
         return $this->createQueryBuilder('p')
-            ->andWhere('p.exampleField = :val')
-            ->setParameter('val', $value)
-            ->orderBy('p.id', 'ASC')
-            ->setMaxResults(10)
+            ->orderBy('p.position', 'ASC')
             ->getQuery()
-            ->getResult()
-        ;
+            ->getResult();
     }
-    */
 
     /*
     public function findOneBySomeField($value): ?Presentation

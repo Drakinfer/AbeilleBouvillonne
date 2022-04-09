@@ -87,9 +87,10 @@ class ProfilController extends AbstractController
     #[Route('/myorders/{statut?}', name: 'myorders')]
     public function myorders(CategorysRepository $categorysRepository, ?string $statut, OrdersRepository $ordersRepository, SocieteRepository $societeRepository)
     {
-        $user = $this->getUser();
-        $order = $user->getOrders();
+
         if (is_null($statut)) {
+            $user = $this->getUser();
+            $order = $user->getOrders();
             return $this->render('profil/mescommandes.html.twig', [
                 'orders' => $order,
                 'categorys' => $categorysRepository->findAll(),
@@ -97,7 +98,8 @@ class ProfilController extends AbstractController
                 'societe' => $societeRepository->find(1),
             ]);
         } else {
-            $orders = $ordersRepository->findBy(['statut' => $statut]);
+            $user = $this->getUser();
+            $orders = $ordersRepository->findByStatut($statut, $user);
             return $this->render('profil/mescommandes.html.twig', [
                 'orders' => $orders,
                 'categorys' => $categorysRepository->findAll(),

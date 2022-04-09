@@ -75,6 +75,7 @@ nav:first-of-type{
     
 .nav-links{
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-around;
     width: 100%;
     list-style: none;
