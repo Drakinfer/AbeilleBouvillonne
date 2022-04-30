@@ -26,6 +26,15 @@
 				.banderolle {
 					background-image: url({{ asset('images/'~ societe.banniere)}});
 				}
+
+				.cote-gauche {
+					background-image: url({{ asset('images/'~ societe.imageGauche)}});
+				}
+
+				.cote-droit {
+					background-image: url({{ asset('images/'~ societe.imageDroite)}});
+				}
+
 			</style>
 		{% endblock %}
 	</head>
@@ -140,15 +149,16 @@
 
 
 		<main>
-			<section class="cote-gauche">
-				<img src="{{asset('images/' ~ societe.banniere)}}" alt="banderolle de miel" class="img-banderolle"></section>
+			<section class="cote-gauche"></section>
 			<section id="main">
 				<h1>Miel Bouvillon</h1>
-				<section class="banderolle"></section>
+				<section id="abeille">
+					<img src="{{asset('images/abeille.png')}}" alt="abeille" id="img-abeille">
+				</section>
+				{# <section class="banderolle"></section> #}
 				{% block body %}{% endblock %}
 			</section>
-			<section class="cote-droit">
-				<img src="{{asset('images/' ~ societe.banniere)}}" alt="banderolle de miel" class="img-banderolle"></section>
+			<section class="cote-droit"></section>
 		</main>
 		<footer class="footer">
 			{% block footer %}

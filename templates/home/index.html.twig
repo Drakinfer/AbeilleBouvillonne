@@ -11,6 +11,7 @@
 
 {% block body %}
 	<section class="centre">
+	<h2>Nos évènements à venir</h2>
 		<section class="container">
 			{% for event in events %}
 				<a href="{{path('event_detail', {'id':event.id})}}">
@@ -36,7 +37,7 @@
 			</section>
 			<a href="{{path('eventslist')}}" class="btn btn-event">Voir tous nos évènements</a>
 		</section>
-		<h2 class="centre titre">Nos produits</h2>
+		<h2 class="centre titre">Venez découvrir nos produits</h2>
 		<section id="category">
 			{% for category in categorys %}
 				<a href="{{path('nav_filtre',{'cat':category.name})}}" class="btn category-btn">{{category.name}}

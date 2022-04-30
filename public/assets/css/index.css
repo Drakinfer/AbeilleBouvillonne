@@ -50,11 +50,6 @@
     color: var(--miel);
   }
 
-  .titre{
-      font-size: 20px;
-      font-weight: bold;
-  }
-
   .carousel-caption{
     width: 100%;
     position: absolute;

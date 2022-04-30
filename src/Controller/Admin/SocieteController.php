@@ -76,8 +76,8 @@ class SocieteController extends AbstractController
                 $societe->setFavicon($old_name_favicon);
             }
 
-            $imageGauche = $form->get('image-gauche')->getData();
-            if ($favicon) {
+            $imageGauche = $form->get('imageGauche')->getData();
+            if ($imageGauche) {
                 if (file_exists($path5)) {
                     unlink($path5);
                 }
@@ -88,7 +88,7 @@ class SocieteController extends AbstractController
                 $societe->setImageGauche($old_name_imageGauche);
             }
 
-            $imageDroite = $form->get('image-droite')->getData();
+            $imageDroite = $form->get('imageDroite')->getData();
             if ($imageDroite) {
                 if (file_exists($path6)) {
                     unlink($path6);
