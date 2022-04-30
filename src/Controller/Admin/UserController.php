@@ -26,7 +26,7 @@ class UserController extends AbstractController
     public function setModo($id, UserRepository $userRepository)
     {
         $user = $userRepository->find($id);
-        $user->setRoles(["ROLE_MODO"]);
+        $user->setRoles(["ROLE_ADMIN"]);
 
         return $this->redirectToRoute('users_index', [], Response::HTTP_SEE_OTHER);
     }

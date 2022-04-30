@@ -36,133 +36,10 @@ main{
 
 .cote-gauche, .cote-droit{
     width: 15%;
-    height: 1500px;
-    margin-top: auto;
-    margin-bottom: auto;
-}
-
-#abeille{
-    min-height: 100px;
-    position: relative;
-}
-
-#img-abeille{
-    position: absolute;
-    animation: 30s infinite fly;
-    height: 30px;
-    width: 30px;
-}
-
-@keyframes fly {
-    0%{
-        top: 50%;
-        left: 0%;
-        animation-timing-function: ease-out;
-        transform: translateY(50%);
-    }
-    5%{
-        top: 10%;
-        left : 10%;
-        animation-timing-function: ease-in-out;
-        transform: translateY(50%);
-    }
-    10%{
-        top: 90%;
-        left : 20%;
-        animation-timing-function: ease-in-out;
-        transform: translateY(50%);
-    }
-    15%{
-        top: 10%;
-        left : 30%;
-        animation-timing-function: ease-in-out;
-    }
-    20%{
-        top: 90%;
-        left : 40%;
-        animation-timing-function: ease-in-out;
-    }
-    25%{
-        top: 10%;
-        left : 50%;
-        animation-timing-function: ease-in-out;
-    }
-    30%{
-        top: 90%;
-        left : 60%;
-        animation-timing-function: ease-in-out;
-    }
-    35%{
-        top: 10%;
-        left : 70%;
-        animation-timing-function: ease-in-out;
-    }
-    40%{
-        top: 90%;
-        left : 80%;
-        animation-timing-function: ease-in-out;
-    }
-    45%{
-        top: 10%;
-        left : 90%;
-        animation-timing-function: ease-in-out;
-    }
-    50%{
-        top: 50%;
-        left: 100%;
-        animation-timing-function: ease-in-out;
-        transform: translateY(50%);
-    }
-    55%{
-        top: 90%;
-        left : 90%;
-        animation-timing-function: ease-in-out;
-    }
-    60%{
-        top: 10%;
-        left : 80%;
-        animation-timing-function: ease-in-out;
-    }
-    65%{
-        top: 90%;
-        left : 70%;
-        animation-timing-function: ease-in-out;
-    }
-    70%{
-        top: 10%;
-        left : 60%;
-        animation-timing-function: ease-in-out;
-    }
-    75%{
-        top: 90%;
-        left : 50%;
-        animation-timing-function: ease-in-out;
-    }
-    80%{
-        top: 10%;
-        left : 40%;
-        animation-timing-function: ease-in-out;
-    }
-    85%{
-        top: 90%;
-        left : 30%;
-        animation-timing-function: ease-in-out;
-    }
-    90%{
-        top: 10%;
-        left : 20%;
-        animation-timing-function: ease-in-out;
-    }
-    95%{
-        top: 90%;
-        left : 10%;
-        animation-timing-function: ease-in-out;
-    }
-    100%{
-        top: 50%;
-        left: 0%;
-        animation-timing-function: ease-out;
-    }
+    height: 1980px;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    background-size: 100%;
 }
 
 h2{
@@ -176,10 +53,6 @@ h3{
 
 p{
     font-size: 20px;
-}
-
-h2,h3,h4,h5,h6,p{
-    background-color: white;
 }
 
 h2,h3,h4,h5,h6{
