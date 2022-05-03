@@ -1,12 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Products
+{% block title %}Nouveau message
+	{{order.id}}
+	- Abeille Bouvillonne
 {% endblock %}
 
 {% block body %}
-	<h1>Create new Products</h1>
+	<h2>Nouveau message</h2>
 
-	{{ include('products/_form.html.twig') }}
+	{{ include('message/_form.html.twig') }}
 
-	<a href="{{ path('myorders') }}">back to list</a>
+	<a href="{{ path('myorders') }}" class="btn">Revenir à la liste</a>
 {% endblock %}

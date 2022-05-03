@@ -1,23 +1,23 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Events index
+{% block title %}Liste des évènements - Abeille Bouvillonne
 {% endblock %}
 
 {% block body %}
-	<h1>Events index</h1>
+	<h2>Liste des évènements</h2>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>OpenDate</th>
-				<th>CloseDate</th>
-				<th>Hours</th>
+				<th>Nom</th>
+				<th>Date d'ouverture</th>
+				<th>Date de fermeture</th>
+				<th>Heures d'ouvertures</th>
 				<th>Description</th>
-				<th>Adress</th>
-				<th>Postalcode</th>
-				<th>City</th>
-				<th>Country</th>
+				<th>Adresse</th>
+				<th>Code Postal</th>
+				<th>Ville</th>
+				<th>Pays</th>
 				<th>actions</th>
 			</tr>
 		</thead>
@@ -25,8 +25,8 @@
 			{% for event in events %}
 				<tr>
 					<td>{{ event.name }}</td>
-					<td>{{ event.openDate ? event.openDate|date('Y-m-d') : '' }}</td>
-					<td>{{ event.closeDate ? event.closeDate|date('Y-m-d') : '' }}</td>
+					<td>{{ event.openDate ? event.openDate|date('d-m-Y') : '' }}</td>
+					<td>{{ event.closeDate ? event.closeDate|date('d-m-Y') : '' }}</td>
 					<td>{{ event.hours }}</td>
 					<td>{{ event.description }}</td>
 					<td>{{ event.adress }}</td>

@@ -1,0 +1,5 @@
+RewriteEngine on
+RewriteCond %{HTTP_HOST} ^abeillebouvillonne.fr$ [NC,OR]
+RewriteCond %{HTTP_HOST} ^www.abeillebouvillonne.fr$
+RewriteCond %{REQUEST_URI} !public/
+RewriteRule (.*) /dossier/$1 [L]

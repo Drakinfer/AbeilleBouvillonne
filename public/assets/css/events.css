@@ -1,3 +1,30 @@
+#event{
+  display: flex;
+  justify-content: space-around;
+}
+
+#event-img, article{
+  width: 30%;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+#product-img{
+  height: 350px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+article{
+  padding: 5% 0 5% 0;
+}
+
+p{
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
 .events{
     display: flex;
     flex-wrap: wrap;
@@ -50,9 +77,16 @@
         clear: both;
       }
 
-
-      @media screen and (max-width:425px) {
-    
+      @media screen and (max-width:764px) {
+        
+        #event{
+          display: block;
+        }
+        
+        #event-img, article{
+          width: 100%;
+          align-items: center;
+        }
         .events{
           display: block;
           justify-content: center;

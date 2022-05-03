@@ -1,53 +1,53 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Categorys index
+{% block title %}Liste des utilisateurs - Abeille Bouvillonne
 {% endblock %}
 
 {% block body %}
-<div class="container">
+	<div class="container">
 
-	<table class="table">
-		<thead>
-			<tr>
-				<th scope="col">Nom</th>
-				<th scope="col">Prénom</th>
-				<th scope="col">Adresse</th>
-				<th scope="col">Code postal</th>
-				<th scope="col">Ville</th>
-				<th scope="col">Pays</th>
-				<th scope="col">Email</th>
-				<th scope="col">Téléphone</th>
-				<th scope="col">Role</th>
-				<th scope="col">Action</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for user in users %}
+		<table class="table">
+			<thead>
 				<tr>
-					<td>{{user.name}}</td>
-					<td>{{user.firstname}}</td>
-					<td>{{user.adress}}</td>
-					<td>{{user.postalcode}}</td>
-					<td>{{user.city}}</td>
-					<td>{{user.country}}</td>
-					<td>{{user.email}}</td>
-					<td>{{user.phone}}</td>
-					<td>
-						{% if user.roles[0] is same as "ROLE_MODO" %}Modérateur
-						{% else %}
-							{% if  user.roles[0] is same as "ROLE_ADMIN" %}Modérateur
-								{% else %}Client
-							{% endif %}
-						{% endif %}
-					</td>
+					<th scope="col">Nom</th>
+					<th scope="col">Prénom</th>
+					<th scope="col">Adresse</th>
+					<th scope="col">Code postal</th>
+					<th scope="col">Ville</th>
+					<th scope="col">Pays</th>
+					<th scope="col">Email</th>
+					<th scope="col">Téléphone</th>
+					<th scope="col">Role</th>
+					<th scope="col">Action</th>
 				</tr>
-			</td>
-			<td>
-				{% if user.roles[0] is same as "ROLE_MODO" or user.roles[0] is same as "ROLE_ADMIN"  %}
-					{% else %}
-						<a href="{{path('setModo', {'id':user.id})}}">Passer modérateur</a>
-				{% endif %}
-			</td>
-		</tbody>
-	</tr>
-</td></tbody></tr>{% endfor %}{% endblock %}
+			</thead>
+			<tbody>
+				{% for user in users %}
+					<tr>
+						<td>{{user.name}}</td>
+						<td>{{user.firstname}}</td>
+						<td>{{user.adress}}</td>
+						<td>{{user.postalcode}}</td>
+						<td>{{user.city}}</td>
+						<td>{{user.country}}</td>
+						<td>{{user.email}}</td>
+						<td>{{user.phone}}</td>
+						<td>
+							{% if user.roles[0] is same as "ROLE_ADMIN" %}Modérateur
+							{% else %}
+								Client
+							{% endif %}
+						</td>
+						<td>
+							{% if user.roles[0] is same as "ROLE_ADMIN"  %}
+								{% else %}
+									<a href="{{path('setModo', {'id':user.id})}}" class='btn'>Passer modérateur</a>
+							{% endif %}
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+
+		</table>
+
+	{% endblock %}

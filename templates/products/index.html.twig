@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Products index
+{% block title %}Liste des produits - Abeille Bouvillonne
 {% endblock %}
 
 {% block body %}
-	<h1>Products index</h1>
+	<h2>Liste des Produits</h2>
 
 	<table class="table">
 		<thead>
 			<tr>
-				<th>Name</th>
-				<th>Reference</th>
+				<th>Nom</th>
+				<th>Référence</th>
 				<th>Description</th>
 				<th>Prix</th>
 				<th>Stock</th>
@@ -21,7 +21,7 @@
 				<th>Taille</th>
 				<th>Dlc</th>
 				<th>S/C</th>
-				<th>actions</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -34,10 +34,10 @@
 					<td>{{ product.stock }}</td>
 					<td>{{ product.poids }}</td>
 					<td>{{ product.origine }}</td>
-					<td>{{ product.miseEnPot ? product.miseEnPot|date('Y-m-d') : '' }}</td>
+					<td>{{ product.miseEnPot ? product.miseEnPot|date('d-m-Y') : '' }}</td>
 					<td>{{ product.color }}</td>
 					<td>{{ product.taille }}</td>
-					<td>{{ product.dlc ? product.dlc|date('Y-m-d') : '' }}</td>
+					<td>{{ product.dlc ? product.dlc|date('d-m-Y') : '' }}</td>
 					<td>{{ product.onOrder ? 'Yes' : 'No' }}</td>
 					<td>
 						<a href="{{ path('products_show', {'id': product.id}) }}">
@@ -50,7 +50,7 @@
 				</tr>
 			{% else %}
 				<tr>
-					<td colspan="16">no records found</td>
+					<td colspan="16">Pas d'enregistrement trouvés</td>
 				</tr>
 			{% endfor %}
 		</tbody>

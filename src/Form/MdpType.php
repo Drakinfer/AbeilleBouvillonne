@@ -16,11 +16,11 @@ class MdpType extends AbstractType
 
         $builder->add('password', RepeatedType::class, [
             'type' => PasswordType::class,
-            'invalid_message' => 'The password fields must match.',
+            'invalid_message' => 'Le format ne correspond pas',
             'options' => ['attr' => ['class' => 'password-field']],
             'required' => true,
-            'first_options'  => ['label' => 'Password'],
-            'second_options' => ['label' => 'Repeat Password'],
+            'first_options'  => ['label' => 'Mot de Passe'],
+            'second_options' => ['label' => 'Répéter le Mot de Passe'],
         ]);
     }
 

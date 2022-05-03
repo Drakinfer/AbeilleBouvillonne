@@ -32,6 +32,7 @@ main{
 #main{
     width: 70%;
     justify-content: center;
+    margin-top: 20px;
 }
 
 .cote-gauche, .cote-droit{
@@ -150,5 +151,9 @@ table thead tr th:last-of-type{
 @media screen and (max-width:1024px) {
     .entete{
         margin-bottom: 25px;
+    }
+
+    .cote-droit, .cote-gauche{
+        display: none;
     }
 }

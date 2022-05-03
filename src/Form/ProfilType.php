@@ -13,13 +13,55 @@ class ProfilType extends AbstractType
     {
         $builder
             ->add('email')
-            ->add('name')
-            ->add('first_name')
-            ->add('adress')
-            ->add('postalcode')
-            ->add('city')
-            ->add('country')
-            ->add('phone');
+            ->add(
+                'name',
+                TextType::class,
+                [
+                    'label' => 'Nom',
+                ]
+            )
+            ->add(
+                'first_name',
+                TextType::class,
+                [
+                    'label' => 'Prénom',
+                ]
+            )
+            ->add(
+                'adress',
+                TextType::class,
+                [
+                    'label' => 'Adresse',
+                ]
+            )
+            ->add(
+                'postalcode',
+                TextType::class,
+                [
+                    'label' => 'Code Postal',
+                ]
+            )
+            ->add(
+                'city',
+                TextType::class,
+                [
+                    'label' => 'Ville',
+                ]
+            )
+            ->add(
+                'country',
+                TextType::class,
+                [
+                    'label' => 'Pays',
+                ]
+            )
+            ->add(
+                'phone',
+                TextType::class,
+                [
+                    'label' => 'Téléphone',
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

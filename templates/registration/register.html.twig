@@ -10,7 +10,7 @@
 			<div class="alert alert-danger" role="alert">{{ flashError }}</div>
 		{% endfor %}
 
-		<h1>Register</h1>
+		<h2>S'inscrire</h2>
 
 		{{ form_start(registrationForm) }}
 		{{ form_row(registrationForm.name, {
@@ -40,7 +40,7 @@
         }) }}
 		{{ form_row(registrationForm.agreeTerms) }}
 
-		<button type="submit" class="btn btn-warning">S'inscrire</button>
+		<button type="submit" class="btn">S'inscrire</button>
 		{{ form_end(registrationForm) }}
 	</section>
 {% endblock %}

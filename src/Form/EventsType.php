@@ -6,7 +6,9 @@ use App\Entity\Events;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class EventsType extends AbstractType
 {
@@ -23,15 +25,63 @@ class EventsType extends AbstractType
                     'empty_data' => ''
                 ]
             )
-            ->add('name')
-            ->add('openDate')
-            ->add('closeDate')
-            ->add('hours')
+            ->add(
+                'name',
+                TextType::class,
+                [
+                    'label' => 'Nom',
+                ]
+            )
+            ->add(
+                'openDate',
+                DateType::class,
+                [
+                    'label' => "Date d'ouverture",
+                ]
+            )
+            ->add(
+                'closeDate',
+                DateType::class,
+                [
+                    'label' => 'Date de fermeture',
+                ]
+            )
+            ->add(
+                'hours',
+                DateType::class,
+                [
+                    'label' => "Heures d'ouvertures",
+                ]
+            )
             ->add('description')
-            ->add('adress')
-            ->add('postalcode')
-            ->add('city')
-            ->add('country');
+            ->add(
+                'adress',
+                TextType::class,
+                [
+                    'label' => 'Adresse',
+                ]
+            )
+            ->add(
+                'postalcode',
+                TextType::class,
+                [
+                    'label' => 'Code Postal',
+                ]
+            )
+            ->add(
+                'city',
+                TextType::class,
+                [
+                    'label' => 'Ville',
+                ]
+            )
+            ->add(
+                'country',
+                TextType::class,
+                [
+                    'label' => 'Pays',
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

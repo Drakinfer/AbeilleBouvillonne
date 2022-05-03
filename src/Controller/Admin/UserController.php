@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Repository\UserRepository;
 use App\Repository\CategorysRepository;
 use App\Repository\SocieteRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -23,11 +24,11 @@ class UserController extends AbstractController
     }
 
     #[Route('/{id}/modo', name: 'setModo', methods: ['GET'])]
-    public function setModo($id, UserRepository $userRepository)
+    public function setModo($id, UserRepository $userRepository, EntityManagerInterface $entityManager)
     {
         $user = $userRepository->find($id);
         $user->setRoles(["ROLE_ADMIN"]);
-
+        $entityManager->flush();
         return $this->redirectToRoute('users_index', [], Response::HTTP_SEE_OTHER);
     }
 }

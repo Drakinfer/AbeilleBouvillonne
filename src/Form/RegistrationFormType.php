@@ -24,9 +24,10 @@ class RegistrationFormType extends AbstractType
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue([
-                        'message' => 'You should agree to our terms.',
+                        'message' => 'Vous devez validez',
                     ]),
                 ],
+                'label' => 'Confirmer les <a href="{{path("mentions")}}">CGU</a>',
             ])
             ->add('plainPassword', PasswordType::class, [
                 // instead of being set onto the object directly,
@@ -45,13 +46,55 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            ->add('name', TextType::class)
-            ->add('first_name', TextType::class)
-            ->add('adress', TextType::class)
-            ->add('postalcode', TextType::class)
-            ->add('city', TextType::class)
-            ->add('country', TextType::class)
-            ->add('phone', TextType::class);
+            ->add(
+                'name',
+                TextType::class,
+                [
+                    'label' => 'Nom',
+                ]
+            )
+            ->add(
+                'first_name',
+                TextType::class,
+                [
+                    'label' => 'Prénom',
+                ]
+            )
+            ->add(
+                'adress',
+                TextType::class,
+                [
+                    'label' => 'Adresse',
+                ]
+            )
+            ->add(
+                'postalcode',
+                TextType::class,
+                [
+                    'label' => 'Code postal',
+                ]
+            )
+            ->add(
+                'city',
+                TextType::class,
+                [
+                    'label' => 'Ville',
+                ]
+            )
+            ->add(
+                'country',
+                TextType::class,
+                [
+                    'label' => 'Pays',
+                ]
+            )
+            ->add(
+                'phone',
+                TextType::class,
+                [
+                    'label' => 'Téléphone',
+                ]
+            );
     }
 
     public function configureOptions(OptionsResolver $resolver): void

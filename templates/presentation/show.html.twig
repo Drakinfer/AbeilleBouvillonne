@@ -1,30 +1,25 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Presentation{% endblock %}
+{% block title %}Paragraphe - Abeille Bouvillonne
+{% endblock %}
 
 {% block body %}
-    <h1>Presentation</h1>
+	<table class="table">
+		<tbody>
+			<tr>
+				<th>Titre</th>
+				<td>{{ presentation.title }}</td>
+			</tr>
+			<tr>
+				<th>Description</th>
+				<td>{{ presentation.description }}</td>
+			</tr>
+		</tbody>
+	</table>
 
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ presentation.id }}</td>
-            </tr>
-            <tr>
-                <th>Title</th>
-                <td>{{ presentation.title }}</td>
-            </tr>
-            <tr>
-                <th>Description</th>
-                <td>{{ presentation.description }}</td>
-            </tr>
-        </tbody>
-    </table>
+	<a href="{{ path('app_presentation_index') }}" class="btn">Revenir à la liste</a>
 
-    <a href="{{ path('app_presentation_index') }}">back to list</a>
+	<a href="{{ path('app_presentation_edit', {'id': presentation.id}) }}" class="btn">Modifier</a>
 
-    <a href="{{ path('app_presentation_edit', {'id': presentation.id}) }}">edit</a>
-
-    {{ include('presentation/_delete_form.html.twig') }}
+	{{ include('presentation/_delete_form.html.twig') }}
 {% endblock %}

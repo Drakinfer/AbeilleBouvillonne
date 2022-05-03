@@ -1,0 +1,11 @@
+{# templates/bundles/TwigBundle/Exception/error404.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+	<h1>Page non trouvée</h1>
+
+	<p>
+		La page demandée n'a pas été trouvée. Vérifier l'URL ou
+		<a href="{{ path('home') }}">retourner sur la page d'Acceuil</a>.
+	</p>
+{% endblock %}

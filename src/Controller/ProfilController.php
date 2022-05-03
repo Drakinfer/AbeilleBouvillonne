@@ -182,6 +182,7 @@ class ProfilController extends AbstractController
 
 
         return $this->renderForm('message/new.html.twig', [
+            'order' => $order,
             'message' => $message,
             'form' => $form,
             'categorys' => $categorysRepository->findAll(),

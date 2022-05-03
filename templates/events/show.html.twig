@@ -5,64 +5,35 @@
 	- Abeille Bouvillonne
 {% endblock %}
 
+{% block uniqueCSS %}
+	<link rel="stylesheet" href="{{asset('assets/css/events.css')}}">
+{% endblock %}
+
 {% block body %}
-	<h1>Events</h1>
 
-	<table class="table">
-		<tbody>
-			<tr>
-				<th>Id</th>
-				<td>{{ event.id }}</td>
-			</tr>
-			<tr>
-				<th>Image</th>
-				<td>{{ event.image }}</td>
-			</tr>
-			<tr>
-				<th>Name</th>
-				<td>{{ event.name }}</td>
-			</tr>
-			<tr>
-				<th>OpenDate</th>
-				<td>{{ event.openDate ? event.openDate|date('Y-m-d') : '' }}</td>
-			</tr>
-			<tr>
-				<th>CloseDate</th>
-				<td>{{ event.closeDate ? event.closeDate|date('Y-m-d') : '' }}</td>
-			</tr>
-			<tr>
-				<th>Hours</th>
-				<td>{{ event.hours }}</td>
-			</tr>
-			<tr>
-				<th>Description</th>
-				<td>{{ event.description }}</td>
-			</tr>
-			<tr>
-				<th>Adress</th>
-				<td>{{ event.adress }}</td>
-			</tr>
-			<tr>
-				<th>Postalcode</th>
-				<td>{{ event.postalcode }}</td>
-			</tr>
-			<tr>
-				<th>City</th>
-				<td>{{ event.city }}</td>
-			</tr>
-			<tr>
-				<th>Country</th>
-				<td>{{ event.country }}</td>
-			</tr>
-		</tbody>
-	</table>
-
-	<a href="{{ path('events_index') }}">back to list</a>
+	<section id="event">
+		<img src="{{asset('images/' ~ event.image)}}" alt="{{event.name}}" id="event-img">
+		<article>
+			<h2>{{event.name}}</h2>
+			<p>{{event.description}}</p>
+			<p>Date d'ouverture :
+				{{ event.openDate ? event.openDate|date('d-m-Y') : '' }}</p>
+			<p>Date de fermeture :
+				{{ event.closeDate ? event.closeDate|date('d-m-Y') : '' }}</p>
+			<p>Horaires :
+				{{event.hours}}</p>
+			<p>Adresse :</p>
+			<p>{{event.adress}}</p>
+			<p>{{event.postalcode}}</p>
+			<p>{{event.city}}</p>
+			<p>{{event.country}}</p>
+		</article>
+	</section>
 
 	{% if is_granted('ROLE_ADMIN') %}
-		<a href="{{ path('events_edit', {'id': event.id}) }}">edit</a>
+		<a href="{{ path('events_edit', {'id': event.id}) }}" class="btn">Modifier</a>
+
+		{{ include('events/_delete_form.html.twig') }}
 	{% endif %}
-
-
-	{{ include('events/_delete_form.html.twig') }}
+	<a href="{{path('home')}}" class="btn">Revenir à l'accueil</a>
 {% endblock %}

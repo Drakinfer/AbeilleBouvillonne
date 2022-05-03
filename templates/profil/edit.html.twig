@@ -1,14 +1,15 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Editer le profil
+{% block title %}Editer le profil - Abeille Bouvillonne
 {% endblock %}
 
 {% block body %}
+	<h2>Changer le profil</h2>
 	<div class="container">
-		<h1>Changer le profil</h1>
+
 
 		{{ include('profil/_form.html.twig', {'button_label': 'Sauvegarder'}) }}
 
-		<a href="{{ path('profil') }}" class="btn btn-outline-warning m-1">Retour au profil</a>
+		<a href="{{ path('profil') }}" class="btn">Retour au profil</a>
 	</div>
 {% endblock %}
